@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
     //500 is off of the right edge of the canvas
     //-200 is starting point off of the left side of canvas
     if(this.x < 500) {
-        this.x += dt * this.speed; //use "+=" 
+        this.x += (dt) * this.speed; //use "+=" 
     }
     else {
         this.x = -200;
@@ -59,19 +59,27 @@ var Player = function(x, y) {
 };
 
 Player.prototype.update = function(dt) {
-
+    this.x * (dt);
+    this.y * (dt);
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function() {
-    this.x -= 100;
-    this.x += 100;
-    this.y -= 100;
-    this.y += 100;
-
+Player.prototype.handleInput = function(direction) {
+    if(direction === 'left' && this.x > 0){
+        this.x -= 100;
+    }
+    if(direction === 'right' && this.x < 400){
+        this.x += 100;
+    }
+    if(direction === 'up' && this.y > 0){
+        this.y -= 100;
+    }
+    if(direction === 'down' && this.y < 400){
+        this.y += 100;
+    }
 };
 
 // Now instantiate your objects.
