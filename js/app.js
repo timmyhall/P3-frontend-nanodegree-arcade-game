@@ -1,13 +1,13 @@
 //Create random speeds for enemy using Math.random() function
 // Speed is in pixels per second
 
-function getRandomIntInclusive(min, max) {
+/*function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 function getRandomEnemySpeed() {
     return getRandomIntInclusive(100, 300);
-};
+};*/
 
 // Enemies our player must avoid. This is a class constructor. 
 var Enemy = function(x,y, width, height, speed) {
@@ -107,16 +107,15 @@ var allEnemies = [
 var player = new Player(200, 340, 100, 100); //player is an instance of the Player Class
 
 //Check collisions using Axis-Aligned 2D Collision Detection
-/*function checkcollisions (allEnemies, player) {
-    for(var i = 0; i < 3; i++) {
+function checkcollisions (allEnemies, player) {
+    for(var i = 0; i < allEnemies.length; i++) {
         if (allEnemies[i].x < player.x + player.width &&
         allEnemies[i].x + allEnemies[i].width > player.x &&
         allEnemies[i].y < player.y + player.height &&
         allEnemies[i].height + allEnemies[i].y > player.y) {
-        player.reset; 
-
+        Player.reset; 
     }
-}*/
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
