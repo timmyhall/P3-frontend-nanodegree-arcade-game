@@ -6,29 +6,28 @@ function getRandomIntInclusive(min, max) {
 };
 
 function getRandomEnemySpeed() {
-    return getRandomIntInclusive(100, 250);
+    return getRandomIntInclusive(100, 300);
 };
-    
 
-// Enemies our player must avoid. This is a class constructor. d
-var Enemy = function(x,y) {
+// Enemies our player must avoid. This is a class constructor. 
+var Enemy = function(x,y, width, height, speed) {
     // Variables applied to each of our instances go here,
     // X and Y parameters as placeholders
     this.x = x;
     this.y = y;
-    this.width = 100;
-    this.height = 100;
-    //Speed parameter using math.random for bugs to move at individual speeds
-    this.speed = getRandomEnemySpeed(); 
+    this.width = width;
+    this.height = height;
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    //Speed parameter using math.random for bugs to move at individual speeds
+    this.speed = speed; 
+
+    // The image/sprite for our enemies
     this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt, player) {
+Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -51,11 +50,11 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 //Player starting point and player image
-var Player = function(x, y) {
+var Player = function(x, y, width, height) {
     this.x = x;
     this.y = y;
-    this.width = 100;
-    this.height = 100;
+    this.width = width;
+    this.height = height;
 
     this.sprite = 'images/char-boy.png';
 };
@@ -90,8 +89,8 @@ Player.prototype.handleInput = function(direction) {
 
 //Reset player postions after collison
 Player.prototype.reset = function () {
-    this.x = 200;
-    this.y = 340;
+    this.x = x;
+    this.y = y;
 }
 
 // Now instantiate your objects.
@@ -99,16 +98,16 @@ Player.prototype.reset = function () {
 //Set enemies initially offscreen. Y values correspond to 3 stone tiles on canvas
 
 var allEnemies = [
-    new Enemy(-200, 40),
-    new Enemy(-200, 140),
-    new Enemy(-200, 240)
+    new Enemy(-200, 40, 100, 100, 150),
+    new Enemy(-200, 140, 100, 100, 300),
+    new Enemy(-200, 240, 100, 100, 225)
 ];
 
 // Place the player object in a variable called player
-var player = new Player(200, 340); //player is an instance of the Player Class
+var player = new Player(200, 340, 100, 100); //player is an instance of the Player Class
 
 //Check collisions using Axis-Aligned 2D Collision Detection
-function checkcollisions (allEnemies, player) {
+/*function checkcollisions (allEnemies, player) {
     for(var i = 0; i < 3; i++) {
         if (allEnemies[i].x < player.x + player.width &&
         allEnemies[i].x + allEnemies[i].width > player.x &&
@@ -117,7 +116,7 @@ function checkcollisions (allEnemies, player) {
         player.reset; 
 
     }
-}
+}*/
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
