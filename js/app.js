@@ -17,8 +17,8 @@ var Enemy = function(x,y, speed) {
     this.y = y;
 
     //Added height and width in order to detect collisions
-    this.width = 100;
-    this.height = 100;
+    this.width = 101;
+    this.height = 83;
 
     //Speed parameter using math.random for bugs to move at individual speeds
     this.speed = speed; 
@@ -55,8 +55,8 @@ Enemy.prototype.render = function() {
 var Player = function(x, y) {
     this.x = x;
     this.y = y;
-    this.width = 100;
-    this.height = 100;
+    this.width = 101;
+    this.height = 83;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -85,9 +85,9 @@ Player.prototype.handleInput = function(direction) {
 };
 
 //Reset player postions after collison and reaching water
-Player.prototype.reset = function() {
-    this.x = 202;
-    this.y = 415;
+Player.prototype.reset = function(x,y) {
+    this.x = x;
+    this.y = y;
 };
 
 //Player reset after reaching water
@@ -116,8 +116,9 @@ function checkCollisions (allEnemies, player) {
         allEnemies[i].x + allEnemies[i].width > player.x &&
         allEnemies[i].y < player.y + player.height &&
         allEnemies[i].height + allEnemies[i].y > player.y) {
-        player.reset(); 
-    }
+            player.reset(202, 415); 
+        };
+    }; 
 };
 
 // This listens for key presses and sends the keys to your
