@@ -1,6 +1,12 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://www.udacity.com/course/viewer/#!/c-nd001/l-2696458597/m-2687128535) for self-checking their submission.
+Welcome to my version of the classic arcade game Frogger!
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+How to play: 
+
+1) Click on link ... 
+2) Use arrow keys to move 'left', 'right', 'up', and 'down'. 
+3) Avoid colliding with enemy bugs to reach the water.
+
+Thank you for playing! 
