@@ -17,8 +17,8 @@ var Enemy = function(x,y, speed) {
     this.y = y;
 
     //Added height and width in order to detect collisions
-    this.width = 101;
-    this.height = 83;
+    this.width = 40;
+    this.height = 40;
 
     //Speed parameter using math.random for bugs to move at individual speeds
     this.speed = speed; 
@@ -55,8 +55,8 @@ Enemy.prototype.render = function() {
 var Player = function(x, y) {
     this.x = x;
     this.y = y;
-    this.width = 101;
-    this.height = 83;
+    this.width = 40;
+    this.height = 40;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -84,6 +84,20 @@ Player.prototype.handleInput = function(direction) {
     }
 };
 
+// Now instantiate your objects.
+// Place all enemy objects in an array called allEnemies
+//Set enemies initially offscreen. Y values correspond to 3 stone tiles on canvas
+//var allEnemies = [];
+
+var allEnemies = [
+    new Enemy(-200, 83, 150),
+    new Enemy(-200, 166, 300),
+    new Enemy(-200, 249, 225)
+];
+
+// Place the player object in a variable called player
+var player = new Player(202, 415); //player is an instance of the Player Class
+
 //Reset player postions after collison and reaching water
 Player.prototype.reset = function(x,y) {
     this.x = x;
@@ -91,23 +105,13 @@ Player.prototype.reset = function(x,y) {
 };
 
 //Player reset after reaching water
-/*if (player.y < 0) {
-    player.reset();
-}*/
+function resetPlayerPostition() {
+    if(player.y < 0) {
+        player.reset(202,415)
+    };
+};
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-//Set enemies initially offscreen. Y values correspond to 3 stone tiles on canvas
-//var allEnemies = [];
-
-var allEnemies = [
-    new Enemy(-200, 40, 150),
-    new Enemy(-200, 140, 300),
-    new Enemy(-200, 240, 225)
-];
-
-// Place the player object in a variable called player
-var player = new Player(202, 415); //player is an instance of the Player Class
+resetPlayerPostition();
 
 //Check collisions using Axis-Aligned 2D Collision Detection
 function checkCollisions (allEnemies, player) {
