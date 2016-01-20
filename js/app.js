@@ -10,18 +10,20 @@ function getRandomEnemySpeed() {
 };*/
 
 // Enemies our player must avoid. This is a class constructor. 
-var Enemy = function(x,y, width, height, speed) {
+var Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // X and Y parameters as placeholders
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
+
+    //Added height and width in order to detect collisions
+    this.width = 100;
+    this.height = 100;
 
     //Speed parameter using math.random for bugs to move at individual speeds
     this.speed = speed; 
 
-    // The image/sprite for our enemies
+    // Enemy image
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -32,7 +34,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     //500 is off of the right edge of the canvas
-    //-200 is starting point off of the left side of canvas
+    //-200 is starting point off of the left edgeof canvas
     if(this.x < 500) {
         this.x += (dt) * this.speed; //use "+=" 
     }
@@ -50,72 +52,73 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 //Player starting point and player image
-var Player = function(x, y, width, height) {
+var Player = function(x, y) {
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
-
+    this.width = 100;
+    this.height = 100;
     this.sprite = 'images/char-boy.png';
 };
 
-//Multiply movement by dt parameter
-// ** I am not multiplying by any speed. Is this ok?
 Player.prototype.update = function(dt) {
-    this.x * (dt);
-    this.y * (dt);
+   
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//Player movement is equal to 100. Roughly the length and width of squares on canvas
-// ** No dt parameter. Is this ok?
+//Player movement is equal to 100. Roughly the length and width of the squares on canvas
 Player.prototype.handleInput = function(direction) {
     if(direction === 'left' && this.x > 0){
-        this.x -= 100;
+        this.x -= 101;
     }
     if(direction === 'right' && this.x < 400){
-        this.x += 100;
+        this.x += 101;
     }
     if(direction === 'up' && this.y > 0){
-        this.y -= 100;
+        this.y -= 83;
     }
     if(direction === 'down' && this.y < 400){
-        this.y += 100;
+        this.y += 83;
     }
 };
 
-//Reset player postions after collison
-Player.prototype.reset = function () {
-    this.x = x;
-    this.y = y;
-}
+//Reset player postions after collison and reaching water
+Player.prototype.reset = function() {
+    this.x = 202;
+    this.y = 415;
+};
+
+//Player reset after reaching water
+/*if (player.y < 0) {
+    player.reset();
+}*/
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 //Set enemies initially offscreen. Y values correspond to 3 stone tiles on canvas
+//var allEnemies = [];
 
 var allEnemies = [
-    new Enemy(-200, 40, 100, 100, 150),
-    new Enemy(-200, 140, 100, 100, 300),
-    new Enemy(-200, 240, 100, 100, 225)
+    new Enemy(-200, 40, 150),
+    new Enemy(-200, 140, 300),
+    new Enemy(-200, 240, 225)
 ];
 
 // Place the player object in a variable called player
-var player = new Player(200, 340, 100, 100); //player is an instance of the Player Class
+var player = new Player(202, 415); //player is an instance of the Player Class
 
 //Check collisions using Axis-Aligned 2D Collision Detection
-function checkcollisions (allEnemies, player) {
+function checkCollisions (allEnemies, player) {
     for(var i = 0; i < allEnemies.length; i++) {
         if (allEnemies[i].x < player.x + player.width &&
         allEnemies[i].x + allEnemies[i].width > player.x &&
         allEnemies[i].y < player.y + player.height &&
         allEnemies[i].height + allEnemies[i].y > player.y) {
-        Player.reset; 
+        player.reset(); 
     }
-}
+};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
