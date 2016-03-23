@@ -1,7 +1,7 @@
-# Welcome to my version of the classic arcade game Frogger!
+# My version of the classic arcade game Frogger!
 
-Built classic arcade game Frogger using Javascript and the provided art assets files and game engine file
-from Udacity's Gitub repository. 
+Built classic arcade game Frogger using Javascript and the provided art asset's files and game engine file
+from Udacity. 
 
 ### Steps to build game 
 
