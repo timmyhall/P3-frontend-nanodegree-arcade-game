@@ -1,24 +1,32 @@
-frontend-nanodegree-arcade-game
-===============================
+# Welcome to my version of the classic arcade game Frogger!
 
-Welcome to my version of the classic arcade game Frogger!
+Built classic arcade game Frogger using Javascript and the provided art assets files and game engine file
+from Udacity's Gitub repository. 
 
-How to play: 
+### Steps to build game 
 
+1.  Implement the Player and the Enemy classes
+	* Loading the images by setting this.sprite to the appropriate image in the image folder
+	* Setting the Player and Enemy initial location
+	* Setting the Player and Enemy speed
+2. Implement update method for the Player and Enemy
+	* Updates the Player and Enemy location 
+	* Handle collision with the Player and Enemy
+3. Implement the render method for the Player and Enemy
+4. Implement the handleinput method for the Player
+	* Receive user input, allowedKeys (the key which was pressed) and move the player according to that input
+5. Instantiate the Player and Enemy Objects
+	* Creating a new Player object
+	* Creating several new Enemies objects and placing them in an array called allEnemies
 
-1) Click on link 'http://timmyhall.github.io/frontend-nanodegree-arcade-game/''
+### Instructions 
 
-2) Click 'Download .zip'
+* Left key moves the player to the left
+* Right key moves the player to the right 
+* Up key moves the player up 
+* Down key moves the player down
+* If the player reaches the water the game will reset by moving the player back to the initial location 
 
-3) Double click on downloaded zip file to create folder 'timmyhall-frontend-nanodegree-arcade-game-d46dcbd'
+### Link to play: 
 
-4) Open folder 'timmyhall-frontend-nanodegree-arcade-game-d46dcbd'
-
-5) Open index.html in your web browser
-
-6) Use arrow keys to move 'left', 'right', 'up', and 'down'
-
-7) Avoid colliding with enemy bugs to reach the water
-
-
-Thank you for playing! 
+My basic version of the classic arcade game [**Frogger**](http://timmyhall.github.io/P3-frontend-nanodegree-arcade-game/). 
